@@ -1,0 +1,14 @@
+{
+  "name": "5dbe8cb2c9edb24f",
+  "main": "5dbe8cb2c9edb24f@42.js",
+  "version": "42.0.0",
+  "homepage": "https://observablehq.com/d/5dbe8cb2c9edb24f",
+  "author": {
+    "name": "Shade",
+    "url": "https://observablehq.com/@xyzic"
+  },
+  "type": "module",
+  "peerDependencies": {
+    "@observablehq/runtime": "4"
+  }
+}
