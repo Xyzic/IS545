@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+# In[7]:
 
 
 import pandas as pd
@@ -14,11 +14,11 @@ import time
 import matplotlib.pyplot as plt
 import altair as alt
 
-data = pd.read_csv("https://raw.githubusercontent.com/Xyzic/IS545/main/final/datetime_Crimes.csv?token=AA6RB2VNCRKJCJNQURR467TASYBCM")
+data = pd.read_csv("https://raw.githubusercontent.com/Xyzic/IS545/main/final/datetime_Crimes.csv?token=AA6RB2XXKBKA4FWZN3EGGJLAUBEXE")
 data['Date'] = pd.to_datetime(data['Date'])
 
 
-# In[2]:
+# In[ ]:
 
 
 '''
@@ -34,7 +34,7 @@ Also, there are some very sensitive topics shown. Proceed at your own discretion
 '''
 
 
-# In[3]:
+# In[ ]:
 
 
 st.header("Crime Locations")
@@ -50,14 +50,14 @@ for i in filters:
     st.write(i)
 
 
-# In[4]:
+# In[ ]:
 
 
 filtered_data = data.loc[(data['Primary Type'].isin(filters))]
 latlonchic = filtered_data.filter(['Latitude', 'Longitude']).rename(columns = {"Latitude": "lat", "Longitude": "lon"}).dropna()
 
 
-# In[5]:
+# In[ ]:
 
 
 layer = pdk.Layer(
@@ -82,7 +82,7 @@ r = pdk.Deck(
 st.pydeck_chart(r)
 
 
-# In[6]:
+# In[ ]:
 
 
 st.header("Crimes Filtered by the Day")
@@ -101,14 +101,14 @@ st.write("*Totals by Type*")
 st.write(runningtotal)
 
 
-# In[7]:
+# In[ ]:
 
 
 filtered_dayta = data.loc[(data['Date'].dt.date == curr_day)]
 latlonchicday = filtered_dayta.filter(['Latitude', 'Longitude']).rename(columns = {"Latitude": "lat", "Longitude": "lon"}).dropna()
 
 
-# In[8]:
+# In[ ]:
 
 
 daylayer = pdk.Layer(
@@ -133,13 +133,13 @@ r2 = pdk.Deck(
 st.pydeck_chart(r2)
 
 
-# In[9]:
+# In[ ]:
 
 
 st.header("Totals of Crimes for a Date Range")
 
 
-# In[10]:
+# In[ ]:
 
 
 st.sidebar.header("Totals of Types of Crimes in a Selected Date Range")
@@ -151,7 +151,7 @@ req_date_init = days_passed[0].strftime("%B %d")
 req_date_final = days_passed[1].strftime("%B %d")
 
 
-# In[21]:
+# In[ ]:
 
 
 line_filters = st.sidebar.multiselect(
@@ -162,7 +162,7 @@ line_filtered_data = data.loc[(data['Primary Type'].isin(line_filters))]
 st.write("Showing crimes of type(s): ", line_filters, " from ", req_date_init, " to ", req_date_final)
 
 
-# In[19]:
+# In[ ]:
 
 
 total_data = line_filtered_data[['Date', 'Primary Type']].copy()
@@ -189,14 +189,14 @@ plot_range = alt.Chart(final_data).mark_line().encode(
 st.altair_chart(plot_range)
 
 
-# In[12]:
+# In[ ]:
 
 
 st.header("Crime Traffic by Location")
 st.subheader("This hex plot shows the crime density by area in the city, filtered by the sidebar")
 
 
-# In[26]:
+# In[ ]:
 
 
 st.sidebar.title("Filter Hex Plot by Type(s) of Crimes")
@@ -240,14 +240,14 @@ r3 = pdk.Deck(
 st.pydeck_chart(r3)
 
 
-# In[13]:
+# In[ ]:
 
 
 st.header("Crime Totals throughout the Day")
 st.subheader("*A histogram, binned by the hour, of total crimes taken at that hour in 2020*")
 
 
-# In[14]:
+# In[ ]:
 
 
 hist_values = np.histogram(data['Date'].dt.hour, bins = 24, range = (0, 24))[0]
