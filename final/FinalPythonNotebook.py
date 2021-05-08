@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[7]:
+# In[8]:
 
 
 import pandas as pd
@@ -14,7 +14,7 @@ import time
 import matplotlib.pyplot as plt
 import altair as alt
 
-data = pd.read_csv("https://raw.githubusercontent.com/Xyzic/IS545/main/final/datetime_Crimes.csv?token=AA6RB2XXKBKA4FWZN3EGGJLAUBEXE")
+data = pd.read_csv("https://raw.githubusercontent.com/Xyzic/IS545/main/final/datetime_Crimes.csv")
 data['Date'] = pd.to_datetime(data['Date'])
 
 
